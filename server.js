@@ -3,6 +3,9 @@ import mongoose from "mongoose";
 import { connectUsingMongoose } from "./src/config/mongooseConfig.js";
 import dotenv from "dotenv";
 import userRouter from "./src/features/user/user.routes.js";
+import jwtAuth from "./src/middlewares/jwt.middleware.js";
+import postRouter from "./src/features/post/post.routes.js";
+
 dotenv.config();
 
 const app = express();
@@ -10,6 +13,7 @@ const app = express();
 
 app.use(express.json());
 app.use("/api/",userRouter);
+app.use("/api/posts",jwtAuth,postRouter);
 
 
 app.listen(3000,()=>{

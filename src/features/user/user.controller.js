@@ -1,6 +1,9 @@
 import UserRepository from "./user.repository.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+dotenv.config();
+
 
 export default class UserController {
   constructor() {
@@ -38,7 +41,7 @@ export default class UserController {
               user: user._id,
               email: user.email,
             },
-            "AIb6d35fvJM4O9pXqXQNla2jBCH9kuLz",
+            process.env.SECRET,
             {
               expiresIn: "1h",
             }
