@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import userRouter from "./src/features/user/user.routes.js";
 import jwtAuth from "./src/middlewares/jwt.middleware.js";
 import postRouter from "./src/features/post/post.routes.js";
+import commentRouter from "./src/features/comment/comment.routes.js";
 
 dotenv.config();
 
@@ -12,8 +13,12 @@ const app = express();
 
 
 app.use(express.json());
+
 app.use("/api/",userRouter);
+
 app.use("/api/posts",jwtAuth,postRouter);
+
+app.use('/api/comments',jwtAuth,commentRouter);
 
 
 app.listen(3000,()=>{

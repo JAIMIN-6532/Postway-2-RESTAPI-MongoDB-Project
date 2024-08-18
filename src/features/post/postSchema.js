@@ -19,10 +19,10 @@ const PostSchema = new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:'Like'
     },
-    comment:{
+    comment:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:'Comment'
-    }
+    }]
 });
 
 export const PostModel = new mongoose.model('PostModel',PostSchema);
