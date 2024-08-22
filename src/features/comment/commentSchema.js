@@ -15,6 +15,7 @@ const CommentSchema = new mongoose.Schema({
     ref: "Post",
     required: true,
   },
+  likes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
 });
 
 export const CommentModel = new mongoose.model("CommentModel", CommentSchema);
