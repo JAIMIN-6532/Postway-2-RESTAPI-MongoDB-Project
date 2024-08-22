@@ -19,7 +19,12 @@ const UserSchema = new mongoose.Schema({
   gender:{
     type: String,
     required:[true,"gender is required"]
-  }
+  },
+  friends:[{
+    type:mongoose.Schema.Types.ObjectId,
+    name:String,
+    ref:'Friend'
+  }]
 });
 
 export const UserModel = new mongoose.model('User',UserSchema);
