@@ -2,7 +2,7 @@ import { ObjectId } from "mongodb";
 import { PostModel } from "./postSchema.js";
 import mongoose from "mongoose";
 import { ApplicationError } from "../../error-handler/Applicationerror.js";
-
+ 
 export default class PostRepository {
   async createPost(userId, caption, author, imgUrl) {
     try {

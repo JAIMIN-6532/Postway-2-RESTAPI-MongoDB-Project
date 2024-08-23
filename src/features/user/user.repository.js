@@ -47,7 +47,7 @@ export default class UserRepository {
   async getAllUsers(){
     try{
         const users = await UserModel.find({});
-        return users;
+        return users; 
     }catch(err){
         console.log(err);
         //throw to applicationError
