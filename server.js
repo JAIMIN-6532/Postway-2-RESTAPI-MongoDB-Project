@@ -8,6 +8,7 @@ import postRouter from "./src/features/post/post.routes.js";
 import commentRouter from "./src/features/comment/comment.routes.js";
 import likeRouter from "./src/features/like/like.routes.js";
 import FriendRouter from "./src/features/friendship/friendship.routes.js";
+import OtpRouter from "./src/features/otp/otp.routes.js";
 
 dotenv.config();
 
@@ -26,6 +27,7 @@ app.use('/api/likes',jwtAuth,likeRouter);
 
 app.use('/api/friends',jwtAuth,FriendRouter);
 
+app.use('/api/otp',jwtAuth,OtpRouter)
 
 app.listen(3000,()=>{
     console.log("app is listening at 3000");

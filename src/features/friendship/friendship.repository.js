@@ -39,6 +39,9 @@ export default class FriendRepository{
             } else {
                 // Friendship exists, remove it (either cancel request or unfriend)
                 await FriendModel.deleteOne({ _id: friendship._id });
+                await UserModel.findByIdAndUpdate(userId, {
+                    $pull: { friends: friendId }}
+                );
                 return { message: 'Friendship removed or request canceled' };
             }
         } catch (error) {
@@ -67,13 +70,25 @@ export default class FriendRepository{
 
             if (status === 'accepted') {
                 await UserModel.findByIdAndUpdate(userId, {
-                    $addToSet: { friends: friendId }
-                });
+                    $push: { friends: friendId }},{new:true}
+                );
     
-                await UserModel.findByIdAndUpdate(friendId, {
-                    $addToSet: { friends: userId }
-                });
+                // await UserModel.findByIdAndUpdate(friendId, {
+                //     $addToSet: { friends: userId }
+                // });
             }
+            if (status === 'rejected') {
+                await UserModel.findByIdAndUpdate(userId, {
+                    $pull: { friends: friendId }}
+                );
+    
+                // await UserModel.findByIdAndUpdate(friendId, {
+                //     $addToSet: { friends: userId }
+                // });
+            }
+
+            
+
     
             return { message: `Request ${status}`, request };
         } catch (error) {
