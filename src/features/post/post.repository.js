@@ -1,6 +1,7 @@
 import { ObjectId } from "mongodb";
 import { PostModel } from "./postSchema.js";
 import mongoose from "mongoose";
+import { ApplicationError } from "../../error-handler/Applicationerror.js";
 
 export default class PostRepository {
   async createPost(userId, caption, author, imgUrl) {
@@ -17,6 +18,7 @@ export default class PostRepository {
     } catch (err) {
       console.log(err);
       //throw error
+      throw new ApplicationError("Something went wrong with database", 500);
     }
   }
 
@@ -26,7 +28,7 @@ export default class PostRepository {
       return allPosts;
     } catch (err) {
       console.log(err);
-      return res.status(400).send("something wrong with db");
+      throw new ApplicationError("Something went wrong with database", 500);
     }
   }
 
@@ -36,7 +38,7 @@ export default class PostRepository {
       return posts;
     } catch (err) {
       console.log(err);
-      return res.status(400).send("something wrong with db");
+      throw new ApplicationError("Something went wrong with database", 500);
     }
   }
 
@@ -46,7 +48,7 @@ export default class PostRepository {
       return posts;
     } catch (err) {
       console.log(err);
-      return res.status(400).send("something wrong with db");
+      throw new ApplicationError("Something went wrong with database", 500);
     }
   }
 
@@ -59,7 +61,7 @@ export default class PostRepository {
         return deletedPost;
       } catch (err) {
         console.log(err);
-        return res.status(400).send("something wrong with db");
+        throw new ApplicationError("Something went wrong with database", 500);
       }
   }
 
@@ -72,7 +74,7 @@ export default class PostRepository {
         return updatedPost;
       } catch (err) {
         console.log(err);
-        return res.status(400).send("something wrong with db");
+        throw new ApplicationError("Something went wrong with database", 500);
       }
   }
 }

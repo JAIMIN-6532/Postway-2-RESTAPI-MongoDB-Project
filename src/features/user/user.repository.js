@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import { UserModel } from "./userSchema.js";
+import { ApplicationError } from "../../error-handler/Applicationerror.js";
 
 export default class UserRepository {
   async signUp(name, email, pass, gender) {
@@ -15,6 +16,7 @@ export default class UserRepository {
     } catch (err) {
       console.log(err);
       //throw to applicationError
+      throw new ApplicationError("Something went wrong with database", 500);
     }
   }
 
@@ -25,6 +27,7 @@ export default class UserRepository {
     }catch(err){
         console.log(err);
         //throw to applicationError
+        throw new ApplicationError("Something went wrong with database", 500);
 
     }
   }
@@ -35,8 +38,9 @@ export default class UserRepository {
     console.log(user)
     return user;
     }catch(err){
-        console.log(err);
+        // console.log(err);
         //throw to applicationError
+        throw new ApplicationError("Something went wrong with database", 500); 
     }
   }
 
@@ -47,6 +51,7 @@ export default class UserRepository {
     }catch(err){
         console.log(err);
         //throw to applicationError
+        throw new ApplicationError("Something went wrong with database", 500);
     }
   }
 
@@ -68,7 +73,8 @@ export default class UserRepository {
       return updatedUser;
     } catch (err) {
       console.log("Error while updating user:", err);
-      throw new Error("Database error");
+      // throw new Error("Database error");
+      throw new ApplicationError("Something went wrong with database", 500);
     }
   }
 
