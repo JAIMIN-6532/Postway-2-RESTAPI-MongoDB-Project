@@ -105,7 +105,7 @@ export default class PostController {
         }
       } catch (err) {
         console.log(err);
-        //throw err
+        //throw err 
       }
   }
 }
